@@ -6,3 +6,6 @@ This is a processing project.
 http://www.processing.org
 
 Todo:
+
+Complete gunfire code
+
