@@ -19,6 +19,7 @@
   int ammomax;
   color playerColor = color(255,0,0);
   color crateColor = color(0,255,0);
+  color menuColor = color(150,150,30); 
   //--
 
 // Setup
@@ -35,7 +36,18 @@ void draw() {
   testDirection();
   playerCreate();
   playerGunCreate();
+  menu();
 }
+
+//--- Stats, health, ammo etc.
+void menu() {
+  rectMode(CORNERS);
+  fill(menuColor);
+  rect(0,750,width,height);
+
+}
+
+
 
 
 //-- MapBordersfix
@@ -43,7 +55,7 @@ void testDirection() {
   if (gunX >= width) {moveR=false;}else{moveR=true;}
   if (gunX <= 0) {moveL=false;}else{moveL=true;}
   if (gunY <= 0) {moveU=false;}else{moveU=true;}
-  if (gunY >= height) {moveD=false;}else{moveD=true;}
+  if (gunY >= height-150) {moveD=false;}else{moveD=true;}
 
 }  
 
@@ -51,7 +63,7 @@ void testDirection() {
 //-- Movement
 void keyPressed() {
   smooth();
- 
+  println("playerX: "+playerX, "playerY: "+playerY); 
   
   if (keyCode == UP) {
     if (moveU == true) {playerY=playerY-playerspeed;}else{}
