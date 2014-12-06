@@ -4,22 +4,15 @@
   boolean moveU = true, moveD = true, moveL = true, moveR = true;
   boolean weapon = true;
   String weaponkind = "G17";
-  String side = "left";
+  String lookDirection;
   int gunLength = 30;
-  int playerspeed = 5;
-  int playerX = 50, playerY = 50;
-  int gunY = playerY;
-  int gunX = playerX+gunLength;
+  int playerspeed = 5,playerX = 50, playerY = 50;
+  int gunY = playerY,gunX = playerX+gunLength;
   int lineX=playerX+15, lineY = playerY;
-  int crateCornerULX;
-  int crateCornerDRX;
-  int crateCornerULY;
-  int crateCornerDRY;
-  int ammo;
-  int ammomax;
-  color playerColor = color(255,0,0);
-  color crateColor = color(0,255,0);
-  color menuColor = color(150,150,30); 
+  int crateCornerULX,crateCornerDRX,crateCornerULY,crateCornerDRY;
+  int ammo,ammomax;
+  int gunDamage;
+  color playerColor = color(255,0,0),crateColor = color(0,255,0),menuColor = color(150,150,30); 
   //--
 
 // Setup
@@ -71,7 +64,7 @@ void keyPressed() {
     lineY=playerY-15;
     gunY=playerY-gunLength;    
     gunX=playerX;
-
+    lookDirection = "up";
   }
   
   if (keyCode == LEFT) {
@@ -80,7 +73,7 @@ void keyPressed() {
     lineY=playerY;
     gunY=playerY;
     gunX=playerX-gunLength;
-
+    lookDirection = "left";
   }
   
   if (keyCode == RIGHT) {
@@ -89,7 +82,7 @@ void keyPressed() {
     lineY=playerY;
     gunY=playerY;
     gunX=playerX+gunLength;
- 
+    lookDirection = "right";
   }
   
   if (keyCode == DOWN) {
@@ -98,9 +91,15 @@ void keyPressed() {
     lineY=playerY+15;
     gunY=playerY+gunLength;  
     gunX=playerX;
+    lookDirection = "down";
     
   }
+  
+  if (keyCode == ' ') {gunFire();}
+
 }
+
+
 
 //---------- Player and gun -------------
 
@@ -121,6 +120,23 @@ void playerGunCreate() {
   fill(0,200,0);
 }
 
+void gunFire() {
+  if(lookDirection == "up"){
+    int bulletX = gunX, bulletY = gunY;
+    ellipse(bulletX,bulletY,5,5);
+    bulletY--;
+  }else
+  if(lookDirection == "right"){
+    
+  }else
+  if(lookDirection == "left"){
+    
+  }else
+  if(lookDirection == "down"){
+    
+  }
+
+}
 // --------------------------------------
 
 
@@ -138,7 +154,6 @@ void gunCrateSprite(int gsX, int gsY){
   crateCornerDRX = gsX+8;
   crateCornerDRY = gsY+8;
 if(playerX > crateCornerULX && playerX < crateCornerDRX && playerY > crateCornerULY && playerY < crateCornerDRY){
-    print("YUPYUPYUPYUP");
     weaponkind = "ak47";
   }
   
